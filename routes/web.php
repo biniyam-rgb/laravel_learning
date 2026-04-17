@@ -1,17 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', [PageController::class, 'home']);
-Route::get('/about', [PageController::class, 'about']);
-Route::get('/students', [PageController::class, 'students']);
-Route::get('/contact', function () {
-    return view('contact');
+Route::get('/', function () {
+    return redirect('/login');
 });
-Route::post('/submit', [PageController::class, 'submit']);
-Route::get('/contacts', [PageController::class, 'showContacts']);
-Route::get('/delete/{id}', [PageController::class, 'delete']);
-Route::get('/login', [PageController::class, 'loginForm']);
-Route::post('/login', [PageController::class, 'login']);
-Route::get('/logout', [PageController::class, 'logout']);
+Route::get('/register', [AuthController::class, 'showRegister']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'showLogin']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/dashboard', [AuthController::class, 'dashboard']);
+Route::get('/logout', [AuthController::class, 'logout']);
